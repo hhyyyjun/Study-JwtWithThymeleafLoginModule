@@ -1,0 +1,33 @@
+spring:
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/hellchang
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  sql:
+    init:
+      mode: always   #data.sql? ????? ????? ?? ??
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true   #data.sql? ????? ????? ?? ??
+    hibernate:
+      ddl-auto: create-drop    #SessionFactory? ??? ? drop, create, alter, ??? ? drop
+    properties:
+      hibernate:   #console?? sql ??
+        format_sql: true
+        show_sql: true
+
+logging:
+  level:
+    me.hj: DEBUG
+
+jwt:
+  header: Authorization
+  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+  token-validity-in-seconds: 86400

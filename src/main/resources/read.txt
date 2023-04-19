@@ -1,0 +1,61 @@
+Spring Security
+보안담당 프레임워크
+
+1. Security 동작
+1) Authenticatio(인증) : 특정 대상이 누구인지 확인하는 절차
+2) Authorization(권한) : 인증된 주체가 특정한 곳에 접근 권한을 확인하는 것
+
+2. JWT(Json Web Token)
+JWT는 일반적으로 클라이언트와 서버 통신 시 권한 인가(Authorization)을 위해 사용하는 토큰
+JSON 객체를 사용하여 토큰 자체에 정보를 저장하는 Web Token
+다른 인증 방식들에 비해 가볍고 간편해서 유용한 인증 방식
+>> 서버 자원이 많이 사용되는 Cookie와 Session의 문제를 해결하기 위한 방법
+
+3. JWT의 구조
+JWT는 Header, Payload, Signature로 구성
+
+Header : Signature를 해싱하기 위한 알고리즘 정보
+Payload : 서버와 클라이언트가 주고받을 시스템에서 실제 사용될 정보(일반적으로 user id와 유효기간을 포함)
+Signature : 토큰의 유효성 검증을 위한 문자열(Base64 방식으로 인코딩한 Header, Payload, SecretKey를 더한 값)
+
+4. JWT의 장/단점
+장점
+중앙의 인증서버, 데이터 스토어에 대한 의존성이 없다. 수평 확장에 유리
+Base64 URL Safe Encoding을 사용하기 때문에 URL, Cookie, Header 모두 사용 가능
+
+단점
+Payload의 정보가 많아지면 네트워크 사용량이 증가
+Token이 클라이언트에 저장되기 때문에 서버에서 클라이언트의 토큰 조작 불가능
+
+5. JWT의 인증절차
+1) 사용자가 로그인을 한다.
+2) 서버에서는 계정 정보를 읽어 사용자를 확인 후, 사용자의 고유 ID 값을 부여한 후 기타 정보와 함께 Payload 에 집어넣는다.
+3) JWT 토큰의 유효기간을 설정한다.
+4) 암호화할 Secret key 를 이용해 Access Token 을 발급한다.
+5) 사용자는 Access Token 을 받아 저장 후, 인증이 필요한 요청마다 토큰을 헤더에 실어 보낸다.
+6) 서버에서는 해당 토큰의 Verify Signature 를 Secret key 로 복호화한 후, 조작 여부, 유효기간을 확인한다.
+7) 검증이 완료되었을 경우, Payload 를 디코딩 하여 사용자의 ID 에 맞는 데이터를 가져온다.
+
+
+*******
+yml파일의 인코딩이 자꾸 깨져서 여기에 정보 기입
+spring.jpa.defer-datasource-initialization: true   // data.sql 파일이 실행되도록 설정
+jwt.secret  //토큰의 암복호화를 위한 secret key로서 HS256알고리즘
+jwt.token-validity-in-second   //토큰 유효 시간
+*******
+
+
+
+
+
+
+
+
+
+참고
+https://velog.io/@sunil1369/Spring-Spring-Security-Jwt
+https://gksdudrb922.tistory.com/217
+https://bcp0109.tistory.com/301
+
+ResponseEntity
+https://thalals.tistory.com/268
