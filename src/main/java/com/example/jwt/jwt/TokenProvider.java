@@ -20,7 +20,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-//토큰의 생성, 토큰의 유효성 검증, 암호화 설정 등의 역할을 담당하는 클래스
+/**
+* @package : com.example.jwt.jwt
+* @name : TokenProvider.java
+* @date : 2023-04-19 오후 5:23
+* @author : hj
+* @Description: 토큰의 생성, 토큰의 유효성 검증, 암호화 설정 등의 역할을 담당하는 클래스
+**/
 @Component
 public class TokenProvider implements InitializingBean {
     //InitializingBean을 implements 받아 afterPropertiesSet을 Override 하는 이유는

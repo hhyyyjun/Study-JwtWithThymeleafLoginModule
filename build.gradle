@@ -28,11 +28,14 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-devtools'
     //JWT 라이브러리
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
-	//thymleaf 라이브러리
+	//thymeleaf 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	//thymeleaf의 layout기능을 사용하기 위해 라이브러리 추가
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 }
 

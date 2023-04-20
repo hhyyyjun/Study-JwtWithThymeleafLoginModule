@@ -5,7 +5,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-//TokenProvider를 주입받아 JwtFilter를 Security 로직에 적용하는 클래스
+
+/**
+* @package : com.example.jwt.jwt
+* @name : JwtSecurityConfig.java
+* @date : 2023-04-19 오후 5:23
+* @author : hj
+* @Description: TokenProvider를 주입받아 JwtFilter를 Security 로직에 적용하는 클래스
+**/
 public class JwtSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
     private TokenProvider tokenProvider;

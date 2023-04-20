@@ -18,6 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+* @package : com.example.jwt.controller
+* @name : AuthController.java
+* @date : 2023-04-19 오후 5:06
+* @author : hj
+* @Description: 권한 관련 클래스
+**/
 @RestController
 @RequestMapping("/api")
 public class AuthController {
@@ -29,7 +36,12 @@ public class AuthController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
-    //토큰 발급하는 메서드
+    /**
+    * @methodName : authorize
+    * @date : 2023-04-19 오후 5:06
+    * @author : hj
+    * @Description: 토큰 발급하는 메서드
+    **/
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
 

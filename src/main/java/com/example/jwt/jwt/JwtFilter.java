@@ -14,8 +14,14 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+* @package : com.example.jwt.jwt
+* @name : JwtFilter.java
+* @date : 2023-04-19 오후 5:23
+* @author : hj
+* @Description: JWT의 인증정보를 SecurityContest에 저장하는 역할을 담당하는 클래스
+**/
 //토큰 발급 시 헤더에 토큰정보 포함할 때 호출
-//JWT의 인증정보를 SecurityContest에 저장하는 역할을 담당하는 클래스
 //JwtFilter의 DoFilter 메서드에서 Request가 들어올 때 SecurityContext에 Authentication 객체를 저장해 사용
 public class JwtFilter extends GenericFilterBean {
 

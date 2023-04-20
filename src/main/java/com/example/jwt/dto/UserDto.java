@@ -6,7 +6,13 @@ import lombok.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-//회원가입 시 사용
+/**
+* @package : com.example.jwt.dto
+* @name : UserDto.java
+* @date : 2023-04-19 오후 5:26
+* @author : hj
+* @Description: 회원가입 시 사용
+**/
 @Getter
 @Setter
 @Builder

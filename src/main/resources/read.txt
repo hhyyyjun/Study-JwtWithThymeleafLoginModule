@@ -44,7 +44,11 @@ jwt.secret  //토큰의 암복호화를 위한 secret key로서 HS256알고리�
 jwt.token-validity-in-second   //토큰 유효 시간
 *******
 
-
+------------------------------------------------------------------------------------------------------------
+Thymeleaf
+layout:fragment와 th:fragment의 차이점
+th:fragment의 경우 헤더, 푸터, css, js등 공통적인 부분들이 들어가며, th:replace로 해당 html 영역을 불러와 치환하게 됨
+layout:fragment의 경우 계속 내용이 바뀌는 영역에 사용된다.
 
 
 
@@ -53,9 +57,13 @@ jwt.token-validity-in-second   //토큰 유효 시간
 
 
 참고
+JWT관련
 https://velog.io/@sunil1369/Spring-Spring-Security-Jwt
 https://gksdudrb922.tistory.com/217
 https://bcp0109.tistory.com/301
 
 ResponseEntity
 https://thalals.tistory.com/268
+
+Thymeleaf 관련
+https://velog.io/@alicesykim95/Thymeleaf#-1-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%B6%94%EA%B0%80

@@ -5,7 +5,13 @@ import lombok.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-//토큰 발급 시 사용
+/**
+* @package : com.example.jwt.dto
+* @name : LoginDto.java
+* @date : 2023-04-19 오후 5:19
+* @author : hj
+* @Description: 토큰 발급 시 사용
+**/
 @Getter
 @Setter
 @Builder

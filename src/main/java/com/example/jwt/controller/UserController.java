@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.security.Principal;
 
+/**
+* @package : com.example.jwt.controller
+* @name : UserController.java
+* @date : 2023-04-19 오후 5:18
+* @author : hj
+* @Description: User 관련 클래스
+**/
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -19,7 +26,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/signup")  //회원가입, 권한없이 호출 가능
+    /**
+    * @methodName : signup
+    * @date : 2023-04-19 오후 5:18
+    * @author : hj
+    * @Description: 회원가입 메서드
+    **/
+    @PostMapping("/signup")
     public ResponseEntity<User> signup(
             @Valid @RequestBody UserDto userDto
     ) {
@@ -28,6 +41,12 @@ public class UserController {
         //Reponse body에는 데이터 값이 들어있음
     }
 
+    /**
+    * @methodName : getMyUserInfo
+    * @date : 2023-04-19 오후 5:18
+    * @author : hj
+    * @Description: 권한에 따라 User 정보 출력 
+    **/
     @GetMapping("/user")
     @PreAuthorize("hasAnyRole('USER','ADMIN')") //user와 admin 모두 호출 가능하게 설정
     public ResponseEntity<User> getMyUserInfo() {  //Security Context에 저장되어 있는 인증 정보의 username을 기준으로 한 유저정보 및 권한정보를 리턴

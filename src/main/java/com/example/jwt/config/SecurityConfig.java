@@ -14,8 +14,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-
-//Spring Security에서 사용할 보안 설정을 하는 클래스
+/**
+* @package : com.example.jwt.config
+* @name : SecurityConfig.java
+* @date : 2023-04-19 오후 5:17
+* @author : hj
+* @Description: Spring Security에서 사용할 보안 설정을 하는 클래스
+**/
 @EnableWebSecurity //기본적인 Web 보안 활성화
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
@@ -70,7 +75,7 @@ public class SecurityConfig {
 
                 .and()
                     .authorizeRequests()  //요청들에 대한 접근 설정
-                    .antMatchers("/hello").permitAll()  //해당 Path 요청들은 인증없이 접근 설정
+                    .antMatchers("/prac/*").permitAll()  //해당 Path 요청들은 인증없이 접근 설정
                     .antMatchers("/api/authenticate").permitAll()
                     .antMatchers("/api/signup").permitAll()
                     .anyRequest().authenticated()  //이외 나머지 요청은 인증이 필요

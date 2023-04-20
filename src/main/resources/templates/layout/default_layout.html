@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- config -->
+<!-- fragment로 지정한 공통영역을 호출하는 replace - [파일경로 :: fragment명]으로 설정 -->
+<th:block th:replace="fragment/config :: configFragment"></th:block>
+<!-- config -->
+
+<body>
+
+<!-- header -->
+<!-- th:block 기능 : 태그를 사용할 수 없거나 사용하기 싫을 때 사용 -->
+<th:block th:replace="fragment/header :: headerFragment"></th:block>
+<!-- header -->
+
+<div class="container">
+  <div>
+    <!-- content -->
+    <!-- 해당 layout을 사용하는 content의 내용을 불러옴 -->
+    <th:block layout:fragment="content"></th:block>
+    <!-- content -->
+  </div>
+</div>
+
+<!-- footer -->
+<th:block th:replace="fragment/footer :: footerFragment"></th:block>
+<!-- footer -->
+
+</body>
+</html>
