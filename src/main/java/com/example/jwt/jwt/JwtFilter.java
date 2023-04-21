@@ -35,7 +35,12 @@ public class JwtFilter extends GenericFilterBean {
         this.tokenProvider = tokenProvider;
     }
 
-    //실제 필터링 로직, 토큰의 인증정보를 현재 실행중인 스레드(SecurityContext)에 저장하기 위한 역할 수행
+    /**
+    * @methodName : doFilter
+    * @date : 2023-04-20 오후 1:00
+    * @author : hj
+    * @Description: 실제 필터링 로직, 토큰의 인증정보를 현재 실행중인 스레드(SecurityContext)에 저장하기 위한 역할 수행
+    **/
     //토큰 정보가 없거나 유효하지 않으면 정상적으로 수행되지 않음
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
@@ -63,7 +68,13 @@ public class JwtFilter extends GenericFilterBean {
         //탈퇴로 인해 User ID 가 DB 에 없는 경우 등 예외 상황은 Service 단에서 고려해야 함
     }
 
-    //Request Header 에서 토큰 정보를 꺼내옴
+
+    /**
+    * @methodName : resolveToken
+    * @date : 2023-04-20 오후 1:00
+    * @author : hj
+    * @Description: Request Header 에서 토큰 정보를 꺼내옴
+    **/
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {

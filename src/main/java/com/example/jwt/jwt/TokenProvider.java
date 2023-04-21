@@ -56,7 +56,12 @@ public class TokenProvider implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    //유저 정보를 가지고 AccessToken을 생성하는 메서드
+    /**
+    * @methodName : createToken
+    * @date : 2023-04-20 오후 1:00
+    * @author : hj
+    * @Description: 유저 정보를 가지고 AccessToken을 생성하는 메서드
+    **/
     //Authentication 객체에 포함되어 있는 권한 정보들을 담은 토큰 생성
     public String createToken(Authentication authentication) {
         
@@ -79,7 +84,12 @@ public class TokenProvider implements InitializingBean {
                 .compact(); //토큰 생성
     }
 
-    //JWT 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드
+    /**
+    * @methodName : getAuthentication
+    * @date : 2023-04-20 오후 1:01
+    * @author : hj
+    * @Description: JWT 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드
+    **/
     //토큰에 담겨있는 권한 정보들을 이용해 Authentication 객체를 리턴
     //JwtFilter에서 사용됨
     public Authentication getAuthentication(String token) {
@@ -103,7 +113,12 @@ public class TokenProvider implements InitializingBean {
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }
 
-    //토큰 정보 검증하는 메서드
+    /**
+    * @methodName : validateToken
+    * @date : 2023-04-20 오후 1:01
+    * @author : hj
+    * @Description: 토큰 정보 검증하는 메서드
+    **/
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);

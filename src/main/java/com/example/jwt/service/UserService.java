@@ -23,7 +23,12 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    //회원가입 시 호출되는 메서드
+    /**
+    * @methodName : signup
+    * @date : 2023-04-20 오후 1:02
+    * @author : hj
+    * @Description: 회원가입 시 호출되는 메서드
+    **/
     @Transactional
     public User signup(UserDto userDto) {  //username을 통해 이미 가입되어 있는지 확인
         if (userRepository.findOneWithAuthoritiesByUsername(userDto.getUsername()).orElse(null) != null) {
@@ -47,13 +52,25 @@ public class UserService {
         return userRepository.save(user);  // save = DB에 insert
     }
 
+    /**
+    * @methodName : getMyUserWithAuthorities
+    * @date : 2023-04-20 오후 1:02
+    * @author : hj
+    * @Description: SecurityUtil의 getCurrentUsername 메소드가 리턴하는 username의 유저 권한 및 권한 정보 리턴
+    **/
     @Transactional(readOnly = true)
-    public Optional<User> getMyUserWithAuthorities() { //SecurityUtil의 getCurrentUsername 메소드가 리턴하는 username의 유저 권한 및 권한 정보 리턴
+    public Optional<User> getMyUserWithAuthorities() {
         return SecurityUtil.getCurrentUsername().flatMap(userRepository::findOneWithAuthoritiesByUsername);
     }
 
+    /**
+    * @methodName : getUserWithAuthorities
+    * @date : 2023-04-20 오후 1:02
+    * @author : hj
+    * @Description: username을 통해 해당 유저의 정보 및 권한 정보 리턴
+    **/
     @Transactional(readOnly = true)
-    public Optional<User> getUserWithAuthorities(String username) { //username을 통해 해당 유저의 정보 및 권한 정보 리턴
+    public Optional<User> getUserWithAuthorities(String username) {
         return userRepository.findOneWithAuthoritiesByUsername(username);
     }
 
