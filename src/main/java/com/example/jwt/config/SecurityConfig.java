@@ -77,12 +77,10 @@ public class SecurityConfig {
                 .and()
                     .authorizeRequests()  //요청들에 대한 접근 설정
                     .antMatchers("/prac/*").permitAll()  //해당 Path 요청들은 인증없이 접근 설정
-                    .antMatchers("/api/*").permitAll()
-                    .antMatchers("/static/*").permitAll()
-//                    .antMatchers("/api/authenticate").permitAll()
-//                    .antMatchers("/api/signup").permitAll()
-//                    .antMatchers("/api/signin").permitAll()
-//                    .antMatchers("/api/login").permitAll()
+//                    .antMatchers("/api/*").permitAll()
+                    .antMatchers("/api/authenticate").permitAll()
+                    .antMatchers("/api/signup").permitAll()
+                    .antMatchers("/api/signin").permitAll()
                     .anyRequest().authenticated()  //이외 나머지 요청은 인증이 필요
 
                 .and() // JwtFilter를 addFilterBefore로 등록했던 JwtSecurityConfig 클래스를 적용
