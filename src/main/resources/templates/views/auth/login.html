@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+
+<!-- 현재 화면에서만 사용하는 css -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login/login.css}"/>
+</th:block>
+
+<!-- 현재 화면에서만 사용하는 js -->
+<!--<th:block layout:fragment="script">-->
+<!--  <script src="main.js"></script>-->
+<!--</th:block>-->
+
+
+<th:block layout:fragment="content">
+    <div class="loginBox">
+        <form action="/login" method="post" class="loginForm">
+            <div>
+                <input type="text" placeholder="아이디를 입력하세요.">
+                <input type="text" placeholder="비밀번호를 입력하세요.">
+            </div>
+            <div>
+                <input type="submit" value="로그인">
+            </div>
+        </form>
+    </div>
+</th:block>
+
+
+</html>
