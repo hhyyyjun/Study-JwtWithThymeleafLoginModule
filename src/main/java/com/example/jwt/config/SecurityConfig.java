@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .antMatchers(  //아래의 요청들에 대해서는 Spring Security 로직을 수행하지 않아도 접근이 가능(=인증 무시)
                         "/h2-console/**"
                         ,"/favicon.ico"
+                        ,"/css/**", "/js/**", "/img/**"
                 );
     }
 
@@ -76,10 +77,12 @@ public class SecurityConfig {
                 .and()
                     .authorizeRequests()  //요청들에 대한 접근 설정
                     .antMatchers("/prac/*").permitAll()  //해당 Path 요청들은 인증없이 접근 설정
-                    .antMatchers("/api/authenticate").permitAll()
-                    .antMatchers("/api/signup").permitAll()
-                    .antMatchers("/api/signin").permitAll()
-                    .antMatchers("/api/login").permitAll()
+                    .antMatchers("/api/*").permitAll()
+                    .antMatchers("/static/*").permitAll()
+//                    .antMatchers("/api/authenticate").permitAll()
+//                    .antMatchers("/api/signup").permitAll()
+//                    .antMatchers("/api/signin").permitAll()
+//                    .antMatchers("/api/login").permitAll()
                     .anyRequest().authenticated()  //이외 나머지 요청은 인증이 필요
 
                 .and() // JwtFilter를 addFilterBefore로 등록했던 JwtSecurityConfig 클래스를 적용
