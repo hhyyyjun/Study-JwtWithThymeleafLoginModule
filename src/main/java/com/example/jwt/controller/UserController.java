@@ -1,8 +1,10 @@
 package com.example.jwt.controller;
 
+import com.example.jwt.dto.LoginDto;
 import com.example.jwt.dto.UserDto;
 import com.example.jwt.entity.User;
 import com.example.jwt.service.UserService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
 
+    private AuthController authController;
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -52,19 +55,6 @@ public class UserController {
     public String signin(){
         return "views/auth/login";
     }
-
-    /**
-    * @methodName : login
-    * @date : 2023-04-20 오전 10:43
-    * @author : hj
-    * @Description:
-    **/
-//    @PostMapping
-//    @ResponseBody
-//    public ResponseEntity<User> login(@Valid @RequestBody UserDto userDto){
-//
-//        return false;
-//    }
 
     /**
     * @methodName : getMyUserInfo
