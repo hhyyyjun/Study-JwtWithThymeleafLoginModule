@@ -50,7 +50,7 @@ public class UserController {
     **/
     @GetMapping("/signin")
     public String signin(){
-        return "auth/login";
+        return "views/auth/login";
     }
 
     /**
