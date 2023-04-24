@@ -1,3 +1,6 @@
+server:
+  port: 8180
+
 spring:
   h2:
     console:
@@ -9,15 +12,15 @@ spring:
     username: sa
     password:
 
-  sql:
-    init:
-      mode: always   #data.sql? ????? ????? ?? ??
+#  sql:
+#    init:
+#      mode: always   #data.sql run 동작 시 실행
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true   #data.sql? ????? ????? ?? ??
     hibernate:
-      ddl-auto: create-drop    #SessionFactory? ??? ? drop, create, alter, ??? ? drop
+      ddl-auto: none    #SessionFactory? ??? ? drop, create, alter, ??? ? drop
     properties:
       hibernate:   #console?? sql ??
         format_sql: true
