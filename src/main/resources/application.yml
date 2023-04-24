@@ -23,10 +23,10 @@ spring:
         format_sql: true
         show_sql: true
 
-  thymeleaf:
-    prefix: classpath:/templates/views/
-    suffix: .html
-    cache: false
+#  thymeleaf:
+#    prefix: classpath:/templates/views/
+#    suffix: .html
+#    cache: false
 
   devtools:
     livereload:
