@@ -15,10 +15,10 @@
 
 <th:block layout:fragment="content">
     <div class="loginBox">
-        <form action="/login" method="post" class="loginForm">
+        <form th:action="@{/api/authenticate}" method="post" class="loginForm">
             <div>
-                <input type="text" placeholder="아이디를 입력하세요.">
-                <input type="text" placeholder="비밀번호를 입력하세요.">
+                <input type="text" name="username" placeholder="아이디를 입력하세요.">
+                <input type="text" name="password" placeholder="비밀번호를 입력하세요.">
             </div>
             <div>
                 <input type="submit" value="로그인">
