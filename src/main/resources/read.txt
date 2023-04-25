@@ -56,7 +56,7 @@ layout:fragment의 경우 계속 내용이 바뀌는 영역에 사용된다.
 
 
 
-참고
+참고문헌
 JWT관련
 https://velog.io/@sunil1369/Spring-Spring-Security-Jwt
 https://gksdudrb922.tistory.com/217
