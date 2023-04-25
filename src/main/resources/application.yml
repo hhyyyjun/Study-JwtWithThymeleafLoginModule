@@ -1,5 +1,5 @@
 server:
-  port: 8180
+  port: 8080
 
 spring:
   h2:
@@ -34,6 +34,10 @@ spring:
   devtools:
     livereload:
       enabled: true
+    thymeleaf:
+      cache: false
+    restart:
+      enable: false #운영에서는 제거
 
 logging:
   level:
