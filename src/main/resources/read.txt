@@ -62,7 +62,7 @@ https://velog.io/@sunil1369/Spring-Spring-Security-Jwt
 https://gksdudrb922.tistory.com/217
 https://bcp0109.tistory.com/301
 
-ResponseEntity
+ResponseEntity 관련
 https://thalals.tistory.com/268
 
 Thymeleaf 관련
