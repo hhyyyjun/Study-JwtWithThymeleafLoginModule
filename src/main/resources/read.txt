@@ -5,34 +5,57 @@ Spring Security
 1) Authenticatio(인증) : 특정 대상이 누구인지 확인하는 절차
 2) Authorization(권한) : 인증된 주체가 특정한 곳에 접근 권한을 확인하는 것
 
-2. JWT(Json Web Token)
-JWT는 일반적으로 클라이언트와 서버 통신 시 권한 인가(Authorization)을 위해 사용하는 토큰
-JSON 객체를 사용하여 토큰 자체에 정보를 저장하는 Web Token
+2. 서버가 클라이언트 인증을 확인하는 대표적인 방식
+Cookie, Session, Token
+
+Cookie - 클라이언트가 웹 사이트를 방문할 때 해당 사이트가 사용하고 있는 서버를 통해 클라이언트 PC의 브라우저에 설치되는 기록 정보
+단점 - 클라이언트가 요청 시 쿠키 값을 그대로 보내기 때문에 보안에 취약
+       용량에 제한이 있음
+       쿠키 사이즈가 커질수록 네트워크 부하가 심해짐
+       브라우저마다 쿠키에 대한 지원 형태가 달라 브라우저간 공유가 불가능
+
+Session - 클라이언트의 인증 정보를 서버에 저장 및 관리
+단점 - 제 3자가 세션 ID를 통해 클라이언트인척 위장할 수 있음
+       서버에 저장되기 때문에 요청이 많아지면 서버에 부하가 심해짐
+
+Token - 클라이언트가 서버 접속 시 클라리언트의 인증에 따라 토큰 부여, 클라이언트는 api 요청마다 헤더에 토큰을 실어 보냄
+단점 - 토큰 자체의 데이터가 길어, 인증 요청이 많아질수록 네트워크 부하가 심해짐
+       payload 자체는 암호화되지 않아 유저의 중요한 정보를 담을 수 없음
+       토큰을 탈취당하면 대처하기 어려움
+
+3. JWT(Json Web Token)
+JWT는 클라이언트와 서버 통신 시 인증에 필요한 정보들을 암호화시킨 JSON 토큰
 다른 인증 방식들에 비해 가볍고 간편해서 유용한 인증 방식
->> 서버 자원이 많이 사용되는 Cookie와 Session의 문제를 해결하기 위한 방법
+사용자가 JWT를 서버로 전송하면 서버는 토큰 검증 과정을 거쳐 검증이 완료되면 요청에 대한 응답을 함
 
-3. JWT의 구조
-JWT는 Header, Payload, Signature로 구성
+5. JWT의 구조
+JWT는 Header(헤더), Payload(내용), Signature(서명)로 구성
 
-Header : Signature를 해싱하기 위한 알고리즘 정보
-Payload : 서버와 클라이언트가 주고받을 시스템에서 실제 사용될 정보(일반적으로 user id와 유효기간을 포함)
-Signature : 토큰의 유효성 검증을 위한 문자열(Base64 방식으로 인코딩한 Header, Payload, SecretKey를 더한 값)
+Header : JWT에서 사용할 타입과 해시 알고리즘 종류가 담겨있음
+Payload : 서버와 클라이언트가 주고받을 시스템에서 실제 사용될 정보(일반적으로 user id와 유효기간, 권한정보를 포함)
+Signature : 토큰의 유효성 검증을 위한 문자열(Base64 URL-safe Encode 방식으로 인코딩한 Header, Payload, SecretKey(yml파일에서 설정한)를 더한 값)
 
-4. JWT의 장/단점
+***
+Header와 Payload는 단순히 인코딩된 값이기 때문에 제 3자가 복호화 및 조작할 수 있지만,
+Signature는 서버 측에서 관리하는 비밀키가 유출되지 않는 이상 복호화할 수 없다.
+따라서 Signature는 토큰의 위변조 여부를 확인하는데 사용된다.
+
+5. JWT의 장/단점
 장점
-중앙의 인증서버, 데이터 스토어에 대한 의존성이 없다. 수평 확장에 유리
-Base64 URL Safe Encoding을 사용하기 때문에 URL, Cookie, Header 모두 사용 가능
+인증을 위한 별도의 저장소가 필요없음
+클라이언트 인증 정보를 저장하는 세션과 다르게 무상태의 서버로 인해 서버 확장성이 우수
+토큰 기반으로 다른 로그인 시스템에 접근 및 권한 공유가 가능
 
 단점
-Payload의 정보가 많아지면 네트워크 사용량이 증가
+Payload의 정보가 많아지면 네트워크에 부하를 줄 수 있음
 Token이 클라이언트에 저장되기 때문에 서버에서 클라이언트의 토큰 조작 불가능
 
-5. JWT의 인증절차
+6. JWT의 인증절차
 1) 사용자가 로그인을 한다.
 2) 서버에서는 계정 정보를 읽어 사용자를 확인 후, 사용자의 고유 ID 값을 부여한 후 기타 정보와 함께 Payload 에 집어넣는다.
 3) JWT 토큰의 유효기간을 설정한다.
 4) 암호화할 Secret key 를 이용해 Access Token 을 발급한다.
-5) 사용자는 Access Token 을 받아 저장 후, 인증이 필요한 요청마다 토큰을 헤더에 실어 보낸다.
+5) 사용자는 Access Token 을 받아 저장 후, 인증이 필요한 API 요청마다 토큰을 헤더에 실어 보낸다.
 6) 서버에서는 해당 토큰의 Verify Signature 를 Secret key 로 복호화한 후, 조작 여부, 유효기간을 확인한다.
 7) 검증이 완료되었을 경우, Payload 를 디코딩 하여 사용자의 ID 에 맞는 데이터를 가져온다.
 
@@ -61,6 +84,10 @@ JWT관련
 https://velog.io/@sunil1369/Spring-Spring-Security-Jwt
 https://gksdudrb922.tistory.com/217
 https://bcp0109.tistory.com/301
+https://wildeveloperetrain.tistory.com/163
+https://velog.io/@gmtmoney2357/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-Authentication-SecurityContext
+https://imbf.github.io/spring/2020/06/29/Spring-Security-with-JWT.html
+https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-JWTjson-web-token-%EB%9E%80-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC#cookie_/_session_/_token_%EC%9D%B8%EC%A6%9D_%EB%B0%A9%EC%8B%9D_%EC%A2%85%EB%A5%98
 
 ResponseEntity 관련
 https://thalals.tistory.com/268
