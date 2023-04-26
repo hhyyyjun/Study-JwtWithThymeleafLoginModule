@@ -44,7 +44,7 @@ public class AuthController {
     * @Description: 로그인 시 토큰 발급하는 메서드
     **/
     @PostMapping("/authenticate")
-    public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
+    public ResponseEntity<TokenDto> authorize(@Valid LoginDto loginDto) {
         // form 태그 형식으로 데이터를 전송 받으므로 @RequestBody 불필요
         // 이 프로젝트가 아닌 다른 프로젝트에서 form 미 사용 시 붙이면 됨
 

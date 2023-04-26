@@ -16,6 +16,7 @@
 <th:block layout:fragment="content">
     <div class="loginBox">
         <form th:action="@{/api/authenticate}" method="post" class="loginForm">
+        <!-- application/json 에러 발생 시 authController에서 requestBody 체크 -->
             <div>
                 <input type="text" name="username" placeholder="아이디를 입력하세요.">
                 <input type="text" name="password" placeholder="비밀번호를 입력하세요.">
