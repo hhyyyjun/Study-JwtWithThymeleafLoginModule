@@ -1,10 +1,8 @@
 package com.example.jwt.controller;
 
-import com.example.jwt.dto.LoginDto;
 import com.example.jwt.dto.UserDto;
 import com.example.jwt.entity.User;
 import com.example.jwt.service.UserService;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
