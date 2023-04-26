@@ -18,7 +18,7 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true   #data.sql? ????? ????? ?? ??
+    defer-datasource-initialization: true   #data.sql
     hibernate:
       ddl-auto: none    #SessionFactory? ??? ? drop, create, alter, ??? ? drop
     properties:
